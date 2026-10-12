@@ -1,0 +1,11 @@
+{
+  "name": "pweb-ts-p01-2026",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
