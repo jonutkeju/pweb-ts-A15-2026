@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin - Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <script src="dist/storage.js" defer></script>
+  <script src="dist/index.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <div>
+      <h1>Dashboard Admin</h1>
+      <p class="subtitle">Reset setiap hari agar penomoran antrian mulai dari awal.</p>
+    </div>
+    <div class="nav-kanan">
+      <span class="user">
+        <span id="nama-user">-</span>
+        <span id="role-user" class="role">-</span>
+      </span>
+      <a href="operator.html">Operator</a>
+      <a href="layar.html">Layar</a>
+      <button type="button" id="btn-reset" class="btn btn-merah">Reset Antrian</button>
+      <button type="button" id="btn-logout" class="btn">Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Jenis antrian</h2>
+      <form id="form-jenis" class="form-baris" novalidate>
+        <div class="field kode">
+          <label for="input-kode">Kode</label>
+          <input id="input-kode" maxlength="1" placeholder="C" autocomplete="off" />
+        </div>
+        <div class="field lebar">
+          <label for="input-nama">Nama</label>
+          <input id="input-nama" maxlength="30" placeholder="Contoh: Farmasi" autocomplete="off" />
+        </div>
+        <button type="submit" class="btn btn-utama">Tambah</button>
+      </form>
+      <p id="pesan-jenis" class="pesan" hidden></p>
+
+      <div id="list-jenis"></div>
+    </section>
+    <section class="card">
+      <h2>Terbitkan tiket</h2>
+      <form id="form-tiket" class="form-baris" novalidate>
+        <div class="field lebar">
+          <label for="select-jenis">Jenis antrian</label>
+          <select id="select-jenis"></select>
+        </div>
+        <div class="field">
+          <label for="select-prioritas">Prioritas</label>
+          <select id="select-prioritas">
+            <option value="Normal">Normal</option>
+            <option value="Lansia">Lansia</option>
+            <option value="Disabilitas">Disabilitas</option>
+            <option value="VIP">VIP</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-utama">Terbitkan</button>
+      </form>
+      <p id="pesan-tiket" class="pesan" hidden></p>
+
+      <div id="list-tiket"></div>
+    </section>
+  </main>
+</body>
+</html>

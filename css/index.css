@@ -1,0 +1,159 @@
+:root {
+  --primary: #0f766e;
+  --primary-dark: #115e59;
+  --bg: #f0fdfa;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --danger: #b91c1c;
+  --success: #15803d;
+  --orange: #ea580c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+h1, h2, h3 { margin: 0; }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.navbar h1 { font-size: 1.25rem; }
+.subtitle { margin: .2rem 0 0; color: var(--muted); font-size: .85rem; }
+.nav-kanan { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
+.nav-kanan a { color: var(--primary); font-weight: 600; font-size: .9rem; text-decoration: none; }
+.nav-kanan a:hover { text-decoration: underline; }
+.user { font-weight: 600; font-size: .9rem; margin-right: .5rem; }
+.role {
+  margin-left: .25rem; padding: .1rem .5rem;
+  background: #ccfbf1; color: var(--primary-dark);
+  border-radius: 999px; font-size: .75rem; text-transform: capitalize;
+}
+
+.container {
+  max-width: 1150px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  align-items: start;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.card h2 { font-size: 1rem; margin-bottom: 1rem; }
+
+.form-baris { display: flex; align-items: flex-end; gap: .5rem; margin-bottom: .5rem; }
+.field { display: flex; flex-direction: column; gap: .3rem; }
+.field.kode { width: 60px; }
+.field.kode input { text-align: center; font-weight: 700; }
+.field.lebar { flex: 1; }
+label { font-size: .8rem; font-weight: 600; color: var(--muted); }
+input, select {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  font-size: .9rem;
+}
+input:focus, select:focus { outline: 2px solid var(--primary); border-color: transparent; }
+
+.pesan { margin: .5rem 0; padding: .5rem .75rem; border-radius: 8px; font-size: .85rem; }
+.pesan.error { background: #fef2f2; color: var(--danger); }
+.pesan.sukses { background: #f0fdf4; color: var(--success); }
+.pesan[hidden] { display: none; }
+
+.btn {
+  padding: .55rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover { background: #f8fafc; }
+.btn-utama { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-utama:hover { background: var(--primary-dark); }
+.btn-merah { color: var(--danger); border-color: #fecaca; }
+.btn-kecil {
+  padding: .3rem .6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  font-size: .75rem;
+  cursor: pointer;
+}
+.btn-kecil.merah { color: var(--danger); border-color: #fecaca; }
+.btn-link {
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-link.merah { color: var(--danger); }
+.btn-link.hijau { color: var(--success); }
+
+.item-jenis {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .6rem .75rem;
+  margin-top: .5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.item-jenis small { display: block; color: var(--muted); }
+.item-jenis.nonaktif { background: #f8fafc; color: var(--muted); }
+.kode { color: var(--primary); }
+.aksi { display: flex; gap: .3rem; }
+
+.grup { margin-top: 1rem; }
+.grup h3 { font-size: .8rem; color: var(--primary-dark); margin-bottom: .4rem; }
+.tiket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .45rem .7rem;
+  margin-bottom: .3rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+.tiket.dipanggil { background: #fff7ed; border-left: 3px solid var(--orange); }
+.label {
+  margin-left: .35rem;
+  padding: .05rem .4rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+  font-size: .72rem;
+  color: var(--muted);
+}
+.kosong { color: var(--muted); font-size: .85rem; margin: .3rem 0; }
+
+@media (max-width: 800px) {
+  .container { grid-template-columns: 1fr; }
+  .navbar { padding: 1rem; }
+}
+@media (max-width: 500px) {
+  .form-baris { flex-wrap: wrap; }
+  .form-baris .btn { width: 100%; }
+}
