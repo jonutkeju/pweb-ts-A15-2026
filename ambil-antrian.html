@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f7f2" />
+  <title>Ambil Antrian - Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="css/antrian.css" />
+  <script src="dist/storage.js" defer></script>
+  <script src="dist/ambil-antrian.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="ambil-antrian.html" aria-label="Antrian Sehat">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Antrian<span class="brand-light">Sehat</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a data-admin-only href="index.html">Dashboard</a>
+      <a data-admin-only href="operator.html">Operator</a>
+      <a class="active" href="ambil-antrian.html" aria-current="page">Ambil tiket</a>
+      <a href="layar.html">Layar</a>
+    </nav>
+    <div class="account-bar">
+      <span class="account-name"><span id="nama-user">Pengunjung</span><small id="role-user">user</small></span>
+      <button id="btn-logout" class="button button-quiet" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">LAYANAN MANDIRI</p>
+        <h1>Ambil nomor antrean</h1>
+        <p class="heading-copy">Pilih layanan dan prioritas. Nomor tiket Anda akan langsung tersimpan.</p>
+      </div>
+      <a class="button button-quiet" href="layar.html">Lihat layar antrean</a>
+    </section>
+
+    <section id="service-list" class="service-grid" aria-label="Jenis layanan tersedia"></section>
+    <p id="service-empty" class="empty-state" hidden>Belum ada layanan aktif. Silakan hubungi petugas.</p>
+    <section id="ticket-receipt" class="ticket-receipt" aria-live="polite" hidden>
+      <p class="eyebrow">NOMOR ANDA</p>
+      <strong id="receipt-number">-</strong>
+      <p id="receipt-description">Tiket berhasil diterbitkan.</p>
+      <a class="button button-primary" href="layar.html">Pantau antrean</a>
+    </section>
+    <p class="sync-note"><span class="live-dot"></span> Layanan diperbarui otomatis.</p>
+  </main>
+</body>
+</html>

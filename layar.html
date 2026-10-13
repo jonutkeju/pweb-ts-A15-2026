@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f7f2" />
+  <title>Layar Antrean - Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="css/antrian.css" />
+  <script src="dist/storage.js" defer></script>
+  <script src="dist/layar.js" defer></script>
+</head>
+<body class="screen-page">
+  <header class="topbar">
+    <a class="brand" href="layar.html" aria-label="Antrian Sehat">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Antrian<span class="brand-light">Sehat</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a data-admin-only href="index.html">Dashboard</a>
+      <a data-admin-only href="operator.html">Operator</a>
+      <a href="ambil-antrian.html">Ambil tiket</a>
+      <a class="active" href="layar.html" aria-current="page">Layar</a>
+    </nav>
+    <div class="account-bar">
+      <span class="account-name"><span id="nama-user">Pengunjung</span><small id="role-user">user</small></span>
+      <button id="btn-fullscreen" class="button button-quiet" type="button" aria-pressed="false">Layar penuh</button>
+      <button id="btn-logout" class="button button-quiet" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="page-wrap screen-wrap">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">INFORMASI PASIEN</p>
+        <h1>Nomor sedang dipanggil</h1>
+        <p class="heading-copy">Mohon menuju loket layanan saat nomor Anda ditampilkan.</p>
+      </div>
+      <a class="button button-primary" href="ambil-antrian.html">Ambil nomor</a>
+    </section>
+    <section id="screen-list" class="screen-grid" aria-label="Status setiap antrean" aria-live="polite"></section>
+    <p id="screen-empty" class="empty-state" hidden>Belum ada layanan aktif untuk ditampilkan.</p>
+    <div class="screen-footer"><span class="live-dot"></span> Pembaruan otomatis <time id="screen-updated">-</time></div>
+  </main>
+</body>
+</html>

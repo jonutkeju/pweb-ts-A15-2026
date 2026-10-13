@@ -10,15 +10,16 @@
  *
  * Redirect:
  *   admin / moderator -> index.html
- *   user              -> operator.html
+ *   user              -> ambil-antrian.html
  *
  * Seluruh kode dibungkus IIFE agar tidak bentrok nama variabel global
  * dengan file .ts halaman lain (script dimuat tanpa type="module").
  */
 (() => {
     const LOGIN_API = "https://dummyjson.com/auth/login";
+    const LOGIN_TIMEOUT_MS = 12000;
     const ADMIN_PAGE = "index.html";
-    const USER_PAGE = "operator.html";
+    const USER_PAGE = "ambil-antrian.html";
     const form = document.getElementById("login-form");
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
@@ -52,10 +53,20 @@
         errorBox.hidden = true;
     }
     function saveSession(data, role) {
-        localStorage.setItem("token", data.accessToken ?? data.token ?? "");
-        localStorage.setItem("role", role);
-        localStorage.setItem("firstName", data.firstName ?? data.username ?? "Pengguna");
-        localStorage.setItem("username", data.username ?? "");
+        try {
+            localStorage.setItem("token", data.accessToken ?? data.token ?? "");
+            localStorage.setItem("role", role);
+            localStorage.setItem("firstName", data.firstName ?? data.username ?? "Pengguna");
+            localStorage.setItem("username", data.username ?? "");
+        }
+        catch {
+            try {
+                ["token", "role", "firstName", "username"].forEach((key) => localStorage.removeItem(key));
+            }
+            catch {
+            }
+            throw new Error("Login berhasil, tetapi sesi tidak dapat disimpan di browser.");
+        }
     }
     async function handleLogin(event) {
         event.preventDefault();
@@ -66,14 +77,33 @@
             showError("Username dan password wajib diisi.");
             return;
         }
+        if (!navigator.onLine) {
+            showError("Tidak ada koneksi internet. Periksa jaringan lalu coba lagi.");
+            return;
+        }
         setLoading(true);
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), LOGIN_TIMEOUT_MS);
         try {
             const response = await fetch(LOGIN_API, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
+                signal: controller.signal,
             });
-            const data = await response.json();
+            let data;
+            try {
+                const payload = await response.json();
+                if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+                    showError("Server mengirim respons yang tidak valid. Silakan coba lagi.");
+                    return;
+                }
+                data = payload;
+            }
+            catch {
+                showError("Server mengirim respons yang tidak valid. Silakan coba lagi.");
+                return;
+            }
             if (!response.ok) {
                 showError(response.status === 400
                     ? "Username atau password salah."
@@ -90,9 +120,21 @@
         }
         catch (error) {
             console.error("Login error:", error);
-            showError("Tidak dapat terhubung ke server. Periksa koneksi internet Anda.");
+            if (controller.signal.aborted) {
+                showError("Koneksi terlalu lambat. Periksa jaringan lalu coba lagi.");
+            }
+            else if (error instanceof Error && error.message.startsWith("Login berhasil, tetapi sesi")) {
+                showError(error.message);
+            }
+            else if (!navigator.onLine) {
+                showError("Koneksi terputus. Periksa jaringan lalu coba lagi.");
+            }
+            else {
+                showError("Tidak dapat terhubung ke server. Periksa koneksi internet Anda.");
+            }
         }
         finally {
+            window.clearTimeout(timeoutId);
             setLoading(false);
         }
     }

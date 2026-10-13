@@ -167,7 +167,7 @@
     const tombol =
       t.status === "dipanggil"
         ? `<button class="btn-link hijau" data-aksi="selesai" data-nomor="${t.nomor}">Selesai</button>`
-        : `<button class="btn-link" data-aksi="panggil" data-nomor="${t.nomor}">Panggil</button>
+        : `<span class="label">Menunggu</span>
            <button class="btn-link merah" data-aksi="lewati" data-nomor="${t.nomor}">Lewati</button>`;
 
     return `
@@ -214,13 +214,6 @@
     if (!target) return;
 
     switch (btn.dataset.aksi) {
-      case "panggil":
-        // tiket yang sedang dipanggil di layanan yang sama jadi selesai
-        tiket.forEach((t) => {
-          if (t.kode === target.kode && t.status === "dipanggil") t.status = "selesai";
-        });
-        target.status = "dipanggil";
-        break;
       case "lewati":
         target.status = "dilewati";
         break;

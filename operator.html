@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f7f2" />
+  <title>Panel Operator - Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="css/antrian.css" />
+  <script src="dist/storage.js" defer></script>
+  <script src="dist/operator.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Dashboard Antrian Sehat">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Antrian<span class="brand-light">Sehat</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="index.html">Dashboard</a>
+      <a class="active" href="operator.html" aria-current="page">Operator</a>
+      <a href="ambil-antrian.html">Ambil tiket</a>
+      <a href="layar.html">Layar</a>
+    </nav>
+    <div class="account-bar">
+      <span class="account-name"><span id="nama-user">Admin</span><small id="role-user">admin</small></span>
+      <button id="btn-logout" class="button button-quiet" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">OPERASIONAL</p>
+        <h1>Panel operator</h1>
+        <p class="heading-copy">Panggil pasien berikutnya dengan urutan prioritas otomatis.</p>
+      </div>
+      <button id="btn-suara" class="button button-quiet" type="button" aria-pressed="true">Suara panggilan: aktif</button>
+    </section>
+
+    <div class="summary-strip" aria-live="polite">
+      <span class="live-dot"></span><span id="ringkasan">Memuat antrean...</span>
+      <span class="updated-at">Diperbarui <time id="waktu-update">-</time></span>
+    </div>
+    <section id="panel-operator" class="service-grid" aria-label="Daftar layanan operator"></section>
+    <p id="operator-kosong" class="empty-state" hidden>Belum ada jenis antrian. Tambahkan layanan melalui Dashboard Admin.</p>
+  </main>
+</body>
+</html>

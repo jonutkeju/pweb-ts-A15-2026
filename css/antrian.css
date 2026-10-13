@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  color-scheme: light;
+  --ink: #192b2a;
+  --muted: #687b77;
+  --line: #dce6df;
+  --paper: #ffffff;
+  --canvas: #f4f7f2;
+  --teal: #116c61;
+  --teal-dark: #0a5149;
+  --mint: #e2f2e8;
+  --lime: #c9dc72;
+  --amber: #df8b21;
+  --amber-wash: #fff3dd;
+  --red: #b84740;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--canvas); }
+button, a { font: inherit; }
+button { color: inherit; }
+.topbar { display: flex; min-height: 72px; align-items: center; gap: 2rem; padding: 0 4vw; border-bottom: 1px solid var(--line); background: var(--paper); }
+.brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--ink); font: 800 1.04rem "Manrope", sans-serif; text-decoration: none; white-space: nowrap; }
+.brand-mark { display: grid; width: 34px; aspect-ratio: 1; place-items: center; border-radius: 10px; background: var(--teal); color: white; font-size: 1.55rem; line-height: 1; }
+.brand-light { color: var(--teal); }
+.nav-links { display: flex; align-items: center; gap: .25rem; flex: 1; }
+.nav-links a { padding: .6rem .8rem; border-radius: 7px; color: var(--muted); font-size: .88rem; font-weight: 600; text-decoration: none; }
+.nav-links a:hover, .nav-links a.active { background: var(--mint); color: var(--teal-dark); }
+.account-bar { display: flex; align-items: center; gap: .8rem; }
+.account-name { display: grid; font-size: .86rem; font-weight: 700; }
+.account-name small { color: var(--muted); font-size: .72rem; font-weight: 500; text-transform: capitalize; }
+.page-wrap { width: min(1180px, 92vw); margin: 3rem auto; }
+.page-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.75rem; }
+.page-heading h1 { margin: .2rem 0 .35rem; font: 800 2rem "Manrope", sans-serif; letter-spacing: 0; }
+.eyebrow { margin: 0; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; }
+.heading-copy { margin: 0; color: var(--muted); }
+.button { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; padding: .65rem .95rem; border: 1px solid var(--line); border-radius: 7px; background: white; color: var(--ink); font-size: .85rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: background .16s ease, border-color .16s ease, transform .16s ease; }
+.button:hover:not(:disabled) { transform: translateY(-1px); border-color: #a9c6ba; }
+.button:disabled { cursor: not-allowed; opacity: .48; }
+.button-primary { border-color: var(--teal); background: var(--teal); color: white; }
+.button-primary:hover:not(:disabled) { background: var(--teal-dark); }
+.button-quiet:hover:not(:disabled) { background: var(--mint); }
+.button-danger { color: var(--red); }
+.summary-strip { display: flex; min-height: 48px; align-items: center; gap: .65rem; margin-bottom: 1rem; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 7px; background: #edf4ec; color: #43645b; font-size: .84rem; font-weight: 600; }
+.live-dot { width: 8px; aspect-ratio: 1; border-radius: 50%; background: #4c9b5c; box-shadow: 0 0 0 4px #d6ead8; }
+.updated-at { margin-left: auto; color: var(--muted); font-size: .76rem; font-weight: 500; }
+.service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.operator-card, .service-card, .screen-card { min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.operator-card { padding: 1.25rem; }
+.service-card-head { display: flex; align-items: start; justify-content: space-between; gap: .75rem; }
+.service-card-head h2 { margin: .2rem 0 0; font: 700 1.14rem "Manrope", sans-serif; }
+.queue-count { padding: .3rem .55rem; border-radius: 5px; background: var(--mint); color: var(--teal-dark); font-size: .73rem; font-weight: 700; white-space: nowrap; }
+.ticket-pair { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.5rem 0 1.25rem; }
+.ticket-slot { display: flex; min-height: 120px; flex-direction: column; justify-content: center; gap: .35rem; padding: 1rem; border-radius: 7px; background: #f5f8f4; }
+.current-slot { background: var(--amber-wash); }
+.slot-label { color: var(--muted); font-size: .65rem; font-weight: 800; letter-spacing: .06em; }
+.ticket-slot strong { overflow-wrap: anywhere; font: 800 clamp(1.15rem, 2vw, 1.65rem) "Manrope", sans-serif; }
+.current-slot strong { color: #bd7116; }
+.slot-empty { color: var(--muted); font-size: .8rem; }
+.priority-pill { width: fit-content; padding: .18rem .45rem; border: 1px solid var(--line); border-radius: 4px; background: white; color: var(--muted); font-size: .7rem; }
+.operator-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.operator-actions .button-primary { flex: 1; }
+.service-note { margin: .75rem 0 0; color: var(--muted); font-size: .77rem; }
+.empty-state { padding: 2rem; border: 1px dashed #b9c9be; border-radius: 8px; color: var(--muted); text-align: center; }
+
+@media (max-width: 820px) {
+  .topbar { flex-wrap: wrap; gap: .6rem 1.2rem; padding: .8rem 4vw; }
+  .nav-links { order: 3; width: 100%; flex-wrap: wrap; overflow: visible; }
+  .account-bar { margin-left: auto; }
+  .page-wrap { margin: 2rem auto; }
+}
+@media (max-width: 600px) {
+  .page-heading { align-items: start; flex-direction: column; }
+  .page-heading h1 { font-size: 1.65rem; }
+  .service-grid { grid-template-columns: 1fr; }
+  .ticket-pair { gap: .5rem; }
+  .ticket-slot { min-height: 105px; padding: .75rem; }
+  .updated-at { font-size: .68rem; }
+}
+
+.self-service-card { display: flex; flex-direction: column; gap: 1.1rem; padding: 1.25rem; }
+.take-button { width: 100%; min-height: 50px; }
+.priority-options { border-top: 1px solid var(--line); padding-top: .8rem; }
+.priority-options summary { color: var(--muted); font-size: .8rem; font-weight: 700; cursor: pointer; }
+.priority-buttons { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .7rem; }
+.priority-buttons .button { min-height: 36px; padding: .45rem .7rem; font-size: .76rem; }
+.ticket-receipt { width: min(520px, 100%); margin: 2rem auto 0; padding: 1.5rem; border: 1px solid #afd0bc; border-top: 4px solid var(--lime); border-radius: 8px; background: white; text-align: center; }
+.ticket-receipt[hidden] { display: none; }
+.ticket-receipt strong { display: block; margin: .3rem 0; color: var(--teal-dark); font: 800 3rem "Manrope", sans-serif; }
+.ticket-receipt p:not(.eyebrow) { margin: .2rem 0 1rem; color: var(--muted); }
+.sync-note, .screen-footer { display: flex; align-items: center; gap: .65rem; margin-top: 1.5rem; color: var(--muted); font-size: .8rem; }
+.screen-wrap { width: min(1380px, 94vw); }
+.screen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 265px), 1fr)); gap: 1rem; }
+.screen-card { display: flex; min-height: 300px; flex-direction: column; padding: 1.2rem; }
+.screen-card.is-calling { border-color: #e7c183; background: #fffdf8; }
+.screen-card-head { display: flex; align-items: start; justify-content: space-between; gap: .6rem; }
+.screen-card-head h2 { margin: .2rem 0 0; font: 700 1.1rem "Manrope", sans-serif; }
+.screen-status { flex-shrink: 0; padding: .28rem .45rem; border-radius: 4px; background: #edf2ee; color: var(--muted); font-size: .62rem; font-weight: 800; letter-spacing: .05em; }
+.screen-status.status-calling { background: var(--amber-wash); color: #a75c09; }
+.screen-number { display: grid; min-height: 145px; flex: 1; place-items: center; color: #334944; font: 800 clamp(2.1rem, 5vw, 3.5rem) "Manrope", sans-serif; overflow-wrap: anywhere; }
+.is-calling .screen-number { color: #b86a12; }
+.screen-message { min-height: 1.3rem; margin: 0 0 .8rem; color: var(--muted); font-size: .78rem; text-align: center; }
+.screen-waiting { display: flex; align-items: center; justify-content: space-between; padding-top: .75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+.screen-waiting strong { color: var(--ink); font-size: 1rem; }
+.screen-footer time { margin-left: auto; }
+.screen-page:fullscreen { overflow-y: auto; background: var(--canvas); }
+
+@media (max-width: 600px) {
+  .priority-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .screen-card { min-height: 270px; }
+}
